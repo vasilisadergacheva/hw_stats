@@ -1,4 +1,5 @@
 import os
+import rdata
 import pyreadr
 import pandas as pd
 
@@ -9,6 +10,11 @@ class Dataset:
         for file in os.listdir(data_path):
             name = file.split(".")[0]
             file_path = os.path.join(data_path, file)
+
+            if name == "singh2002":
+                self.datasets[name] = rdata.read_rda(file_path)[name]
+                continue
+
             self.datasets[name] = (
                 pd.read_csv(file_path)
                 if file.endswith(".csv")
