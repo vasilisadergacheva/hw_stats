@@ -3,7 +3,7 @@ import pyreadr
 
 
 class Dataset:
-    def __init__(self, data_path: str = "./data") -> None:
+    def __init__(self, data_path: str = "./hw1/data") -> None:
         self.datasets = dict()
         for file in os.listdir(data_path):
             name = file.split(".")[0]
