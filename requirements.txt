@@ -3,3 +3,6 @@ scipy
 matplotlib
 statsmodels
 numpy
+pandas
+seaborn
+mlxtend

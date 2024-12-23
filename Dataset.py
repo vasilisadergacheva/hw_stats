@@ -1,15 +1,19 @@
 import os
 import pyreadr
+import pandas as pd
 
 
 class Dataset:
-    def __init__(self, data_path: str = "./hw1/data") -> None:
+    def __init__(self, data_path: str = "./data") -> None:
         self.datasets = dict()
         for file in os.listdir(data_path):
             name = file.split(".")[0]
-            self.datasets[name.split(".")[0]] = pyreadr.read_r(
-                os.path.join(data_path, file)
-            )[name]
+            file_path = os.path.join(data_path, file)
+            self.datasets[name] = (
+                pd.read_csv(file_path)
+                if file.endswith(".csv")
+                else pyreadr.read_r(file_path)[name]
+            )
 
         self.datasets["cancer"] = [
             124,
